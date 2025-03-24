@@ -1,29 +1,37 @@
 import React from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { TamaguiProvider } from 'tamagui';
 import { Provider } from 'react-redux';
 import { store } from './src/store/index';
-import tamaguiConfig from './tamagui.config';
 import { TabNavigator } from './src/navigation/TabNavigator';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import LoginScreen from './src/screens/login/LoginScreen';
+import { useAppSelector } from './src/store/hooks';
+import 'react-native-gesture-handler';
+import { colors } from './src/styles/MainStyles';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
+function AppContent(): React.JSX.Element {
+  const user = useAppSelector((state) => state.auth.user);
+  
   return (
-    <Provider store={store}>
-      <TamaguiProvider config={tamaguiConfig}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={isDarkMode ? Colors.darker : Colors.lighter}
-        />
-        <NavigationContainer>
-          <TabNavigator />
-        </NavigationContainer>
-      </TamaguiProvider>
-    </Provider>
+    <>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={colors.background.default}
+      />
+      <NavigationContainer>
+        {user ? <TabNavigator /> : <LoginScreen />}
+      </NavigationContainer>
+    </>
   );
 }
 
-export default App;
+export default function App(): React.JSX.Element {
+  return (
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <AppContent />
+      </Provider>
+    </SafeAreaProvider>
+  );
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useColorScheme } from 'react-native';
-import { History, Activity, CreditCard, Package } from '@tamagui/lucide-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors } from '../styles/MainStyles';
 
 interface TabBarIconProps {
   routeName: string;
@@ -8,21 +8,42 @@ interface TabBarIconProps {
 }
 
 export const TabBarIcon = ({ routeName, isFocused }: TabBarIconProps) => {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  
-  const color = isFocused ? 'white' : isDark ? '$gray300' : '$gray700';
-  const size = 20;
+  const color = isFocused ? colors.primary.main : colors.text.secondary;
+  const size = 24;
   
   switch (routeName) {
     case 'History':
-      return <History size={size} color={color} />;
+      return (
+        <MaterialCommunityIcons 
+          name="history" 
+          size={size} 
+          color={color} 
+        />
+      );
     case 'Status':
-      return <Activity size={size} color={color} />;
+      return (
+        <MaterialCommunityIcons 
+          name={isFocused ? "chart-box" : "chart-box-outline"} 
+          size={size} 
+          color={color} 
+        />
+      );
     case 'Withdrawal':
-      return <CreditCard size={size} color={color} />;
+      return (
+        <MaterialCommunityIcons 
+          name={isFocused ? "credit-card" : "credit-card-outline"} 
+          size={size} 
+          color={color} 
+        />
+      );
     case 'Restocking':
-      return <Package size={size} color={color} />;
+      return (
+        <MaterialCommunityIcons 
+          name={isFocused ? "package-variant-closed" : "package-variant"} 
+          size={size} 
+          color={color} 
+        />
+      );
     default:
       return null;
   }

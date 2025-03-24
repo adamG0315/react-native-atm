@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function LoginScreen() {
+export const LoginScreen = () => {
   const dispatch = useAppDispatch();
 
   const loginAsUser = () => {

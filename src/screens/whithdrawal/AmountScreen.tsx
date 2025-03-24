@@ -6,22 +6,20 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { WithdrawalStackParamList } from '../../navigation/WithdrawalStack';
 import { colors } from '../../styles/MainStyles';
+import { commonStyles } from '../../styles/CommonStyles';
 
 type AmountScreenNavigationProp = StackNavigationProp<WithdrawalStackParamList, 'Amount'>;
 
 const styles = StyleSheet.create({
   container: {
+    ...commonStyles.pageContainer,
     gap: 24,
   },
   title: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: colors.text.primary,
+    ...commonStyles.pageTitle,
   },
   inputContainer: {
-    backgroundColor: colors.background.subtle,
-    padding: 16,
-    borderRadius: 8,
+    ...commonStyles.inputContainer,
   },
   input: {
     fontSize: 32,
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background.default,
   },
   buttonContainer: {
-    marginTop: 'auto',
+    ...commonStyles.buttonContainer,
   }
 });
 

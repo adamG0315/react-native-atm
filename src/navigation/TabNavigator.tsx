@@ -18,8 +18,6 @@ const Tab = createBottomTabNavigator<TabParamList>();
 export const TabNavigator = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
-  
-  console.log('Current auth state:', user);
 
   const handleLogout = () => {
     dispatch(logout());

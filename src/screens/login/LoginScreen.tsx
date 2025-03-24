@@ -10,9 +10,12 @@ const styles = StyleSheet.create({
   container: {
     ...commonStyles.pageContainer,
     alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
   title: {
     ...commonStyles.pageTitle,
+    marginBottom: 48,
   },
   buttonContainer: {
     gap: 16,
